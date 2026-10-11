@@ -1,0 +1,117 @@
+name: Bug report
+description: A defect or regression with reproduction steps and screenshots. Lands on Bugs and regressions.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A developer who has not seen the failure must be able to reproduce it from this issue alone. Do not submit until the steps and the evidence are filled. Paste screenshots into Evidence. For an API failure, also paste the status code, response body, and request id.
+
+        File this in the repository where the defect shows up, then add it to **Bugs and regressions** (https://github.com/orgs/aicraftio/projects/2), status **Backlog**. `/raise-bug` does that.
+
+        Match this shape (facts here are an illustration, not a live bug):
+
+        **Title:** Insights Today tab lists yesterday's batches
+
+        **Steps:** 1. Open Hub Insights for ETHCLOA. 2. Stay on Today. 3. Read batch end times.
+
+        **Expected:** Only batches that ended today.
+
+        **Actual:** Batch B-1044 ended yesterday and still appears. `GET ...?period=today` returns 200 with that row. Request id `req_01HXYZ`.
+
+        **Evidence:** Screenshot of the Today tab, screenshot of the network panel, and the log line for that request id.
+
+        **Possible fix:** A hypothesis only. It does not replace the reproduction.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What broke, who hit it, and how bad it is. The title is the symptom, not the suspected fix.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Repository, surface (page, route, or tool), version (SHA or image tag), runtime (local sandbox, cloud, or on-prem), and the account role. No secrets.
+      value: |
+        - Repository:
+        - Surface:
+        - Version:
+        - Runtime:
+        - Account:
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered actions. Include the exact URL, click, or request. The last step is where it breaks.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+      description: What should have happened.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: What happened instead. Include status codes and error text.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Paste screenshots here. For an API or log failure, include a screenshot of the terminal or response plus the body and request id. Redact secrets.
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Frequency
+      options:
+        - Always
+        - Often
+        - Intermittent
+        - Once
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Blocker is production down or data loss. Critical has no workaround. Major has a painful workaround. Minor is small. Trivial is cosmetic.
+      options:
+        - Blocker
+        - Critical
+        - Major
+        - Minor
+        - Trivial
+    validations:
+      required: true
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Regression
+      description: Choose Yes when this used to work.
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+  - type: textarea
+    id: possible-fix
+    attributes:
+      label: Possible fix
+      description: Optional hypothesis. Say what you would check. This is not the spec, and it does not replace the reproduction.
+    validations:
+      required: false
