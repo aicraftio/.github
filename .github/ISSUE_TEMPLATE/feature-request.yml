@@ -1,0 +1,61 @@
+name: Feature request
+description: Shape Up pitch for greenfield work. File it in the owning repo, then add it to Platform features.
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Pitch the feature before building it. Appetite is the time budget that constrains the solution.
+
+        File this issue in the repository that will own the work. If several repos are involved, file it in the primary repo and name the others below. Then add the issue to the org project **Platform features** (https://github.com/orgs/aicraftio/projects/1), status **Todo**. `/request-feature` does that.
+
+        Agents follow the same sections in `.cursor/skills/_shared/feature-pitch.md`.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Who is stuck, and what is hard today? A concrete situation. Do not lead with the solution.
+      placeholder: Process engineers downloading a full recipe history cannot isolate one campaign window.
+    validations:
+      required: true
+  - type: dropdown
+    id: appetite
+    attributes:
+      label: Appetite
+      description: The time budget. It constrains the solution. It is not a hope for how long the work might take.
+      options:
+        - Small batch (2 weeks)
+        - Big batch (6 weeks)
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution
+      description: The elements to build, in product language a developer can implement. State what the user can do when this ships.
+    validations:
+      required: true
+  - type: textarea
+    id: rabbit-holes
+    attributes:
+      label: Rabbit holes
+      description: Details that could sink the pitch. Give each one a decision, or say it will not be chased inside this appetite.
+    validations:
+      required: true
+  - type: textarea
+    id: no-gos
+    attributes:
+      label: No-gos
+      description: Work this pitch explicitly does not include.
+    validations:
+      required: true
+  - type: textarea
+    id: repositories
+    attributes:
+      label: Repositories
+      description: AICraft repos this pitch touches. One per line. The first is where this issue lives.
+      placeholder: |
+        aicraftio/beat
+        aicraftio/aicraft-forge-batch
+    validations:
+      required: true
